@@ -15,6 +15,7 @@ type ProfileHandler struct {
 func (h *ProfileHandler) ReadHandler(ctx *gin.Context) {
 	profile_id := ctx.Param("id")
 	rows := h.Repository.QueryRow(`SELECT ID,
+									USER_ID,
 									NICKNAME,
 									EMAIL,
 									EMAIL_PUBLIC,
@@ -34,6 +35,7 @@ func (h *ProfileHandler) ReadHandler(ctx *gin.Context) {
 	profile := model.Profile{}
 	rows.Scan(
 		&profile.ID,
+		&profile.UserID,
 		&profile.NickName,
 		&profile.Email,
 		&profile.EmailPublic,
@@ -57,6 +59,7 @@ func (h *ProfileHandler) ReadHandler(ctx *gin.Context) {
 
 func (h *ProfileHandler) ReadAllHandler(ctx *gin.Context) {
 	rows, err := h.Repository.Query(`SELECT ID,
+											USER_ID,
 											NICKNAME,
 											EMAIL,
 											EMAIL_PUBLIC,
@@ -82,6 +85,7 @@ func (h *ProfileHandler) ReadAllHandler(ctx *gin.Context) {
 		profile := model.Profile{}
 		rows.Scan(
 			&profile.ID,
+			&profile.UserID,
 			&profile.NickName,
 			&profile.Email,
 			&profile.EmailPublic,

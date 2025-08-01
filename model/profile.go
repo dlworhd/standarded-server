@@ -1,7 +1,8 @@
 package model
 
 type Profile struct {
-	ID                string `json:"user_id"`
+	ID                string `json:"id"`
+	UserID            string `json:"user_id"`
 	Avatar            string `json:"avatar"`
 	NickName          string `json:"nickname"`
 	Email             string `json:"email"`
